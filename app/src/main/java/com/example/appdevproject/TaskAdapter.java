@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ContactAdapter extends RecyclerView.Adapter{
+public class TaskAdapter extends RecyclerView.Adapter{
     private ArrayList<ListActivity> contactData;
     private View.OnClickListener mOnItemClickListener;
     private boolean isDeleting;
@@ -45,7 +45,7 @@ public class ContactAdapter extends RecyclerView.Adapter{
         }
     }
 
-    public ContactAdapter(ArrayList<ListActivity> arrayList, Context context) {
+    public TaskAdapter(ArrayList<ListActivity> arrayList, Context context) {
         contactData = arrayList;
         parentContext = context;
     }
@@ -87,7 +87,7 @@ public class ContactAdapter extends RecyclerView.Adapter{
 
     private void deleteItem(int position) {
         ListActivity contact = contactData.get(position);
-        ContactDataSource ds = new ContactDataSource(parentContext);
+        TaskDataSource ds = new TaskDataSource(parentContext);
         try {
             ds.open();
             boolean didDelete = ds.deleteContact(contact.getContactID());

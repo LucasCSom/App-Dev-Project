@@ -55,8 +55,8 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 boolean status = compoundButton.isChecked();
-                contactAdapter.setDelete(status);
-                contactAdapter.notifyDataSetChanged();
+                TaskAdapter.setDelete(status);
+                TaskAdapter.notifyDataSetChanged();
             }
         });
     }
