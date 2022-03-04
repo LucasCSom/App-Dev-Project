@@ -2,8 +2,10 @@ package com.example.appdevproject;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 public class TaskDataSource {
     private SQLiteDatabase database;
@@ -55,6 +57,30 @@ public class TaskDataSource {
         }
         return didSucceed;
     }
+    public boolean deleteTask(int contactId) {
+        boolean didDelete = false;
+        try {
+            didDelete = database.delete("task","_id="+contactId,null)>0;
+        }
+        catch (Exception e) {
+            //Do nothing -return value already set to false
+        }
+        return didDelete;
+    }
+    public Task getSpecificContact(int taskId) {
+        Task task = new Task();
+        String query = "SELECT * FROM task WHERE _id = " + taskId;
+        Cursor cursor = database.rawQuery(query,null);
 
+        if (cursor.moveToFirst()) {
+            task.setTaskID(cursor.getInt(0));
+            task.setTaskName(cursor.getString(1));
+            task.setNotes(cursor.getString(2));
+            task.setPriority(cursor.getString(3));
+
+            cursor.close();
+        }
+        return task;
+    }
 
 }

@@ -1,7 +1,6 @@
 package com.example.appdevproject;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,7 +89,7 @@ public class TaskAdapter extends RecyclerView.Adapter{
         TaskDataSource ds = new TaskDataSource(parentContext);
         try {
             ds.open();
-            boolean didDelete = ds.deleteContact(contact.getContactID());
+            boolean didDelete = ds.deleteTask(contact.getTaskId());
             ds.close();
             if (didDelete) {
                 contactData.remove(position);
