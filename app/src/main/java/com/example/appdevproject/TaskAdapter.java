@@ -1,5 +1,6 @@
 package com.example.appdevproject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class TaskAdapter extends RecyclerView.Adapter{
-    private ArrayList<ListActivity> contactData;
+    private ArrayList<Task> contactData;
     private View.OnClickListener mOnItemClickListener;
     private boolean isDeleting;
     private Context parentContext;
@@ -44,7 +45,7 @@ public class TaskAdapter extends RecyclerView.Adapter{
         }
     }
 
-    public TaskAdapter(ArrayList<ListActivity> arrayList, Context context) {
+    public TaskAdapter(ArrayList<Task> arrayList, Context context) {
         contactData = arrayList;
         parentContext = context;
     }
@@ -61,10 +62,10 @@ public class TaskAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         ContactViewHolder cvh = (ContactViewHolder) holder;
-        cvh.getContactTextView().setText(contactData.get(position).getContactName());
-        cvh.getPhoneTextView().setText(contactData.get(position).getPhoneNumber());
+        cvh.getContactTextView().setText(contactData.get(position).getTaskName());
+        cvh.getPhoneTextView().setText(contactData.get(position).getNotes());
         if (isDeleting) {
             cvh.getDeleteButton().setVisibility(View.VISIBLE);
             cvh.getDeleteButton().setOnClickListener(new View.OnClickListener() {
@@ -85,11 +86,11 @@ public class TaskAdapter extends RecyclerView.Adapter{
     }
 
     private void deleteItem(int position) {
-        ListActivity contact = contactData.get(position);
+        Task contact = contactData.get(position);
         TaskDataSource ds = new TaskDataSource(parentContext);
         try {
             ds.open();
-            boolean didDelete = ds.deleteTask(contact.getTaskId());
+            boolean didDelete = ds.deleteTask(contact.getTaskID());
             ds.close();
             if (didDelete) {
                 contactData.remove(position);
@@ -105,7 +106,7 @@ public class TaskAdapter extends RecyclerView.Adapter{
         }
     }
 
-    public void setDelete(boolean b) {
+    public static void setDelete(boolean b) {
         isDeleting = b;
     }
 }
