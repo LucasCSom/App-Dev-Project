@@ -81,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void initSortByClick() {
-        RadioGroup rgSortBy = findViewById(R.id.radioGroupSortBy);
+        RadioGroup rgSortBy = findViewById(R.id.radioGroupPriority);
         rgSortBy.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             @Override
