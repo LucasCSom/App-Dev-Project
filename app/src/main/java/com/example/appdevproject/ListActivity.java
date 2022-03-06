@@ -17,9 +17,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
+    TaskAdapter taskAdapter;
 
     RecyclerView taskList;
-    TaskAdapter taskAdapter;
     ArrayList<Task> tasks;
     private View.OnClickListener onItemClickListener = new View.OnClickListener() {
         @Override
@@ -103,8 +103,8 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 boolean status = compoundButton.isChecked();
-                TaskAdapter.setDelete(status);
-                //TaskAdapter.notifyDataSetChanged();
+                taskAdapter.setDelete(status);
+                taskAdapter.notifyDataSetChanged();
             }
         });
     }

@@ -106,8 +106,7 @@ public class TaskAdapter extends RecyclerView.Adapter{
         }
     }
 
-    public static void setDelete(boolean b) {
-        //weird error? might need rebuild by android studio or something
+    public void setDelete(boolean b) {
         isDeleting = b;
     }
 }
