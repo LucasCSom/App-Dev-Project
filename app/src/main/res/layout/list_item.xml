@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textContactName"
+        android:id="@+id/textTaskSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textPhoneNumber"
+        android:id="@+id/textTaskPriority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -28,11 +28,11 @@
         android:textSize="@dimen/text_size_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textContactName"
+        app:layout_constraintTop_toBottomOf="@id/textTaskSubject"
         app:layout_constraintVertical_bias="0.47" />
 
     <Button
-        android:id="@+id/buttonDeleteContact"
+        android:id="@+id/buttonDeleteTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

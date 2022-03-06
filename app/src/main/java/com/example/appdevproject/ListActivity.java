@@ -1,24 +1,72 @@
 package com.example.appdevproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
+
+    RecyclerView taskList;
+    TaskAdapter taskAdapter;
+    ArrayList<Task> tasks;
+    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+            int position = viewHolder.getAdapterPosition();
+            int taskId = tasks.get(position).getTaskID();
+            Intent intent = new Intent(ListActivity.this, MainActivity.class);
+            intent.putExtra("taskId", taskId);
+            startActivity(intent);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_list);
         initListButton();
-        initSettingsButton();
         initPriorityButton();
+        initSettingsButton();
+        //          initAddContactButton();
         initDeleteSwitch();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        String sortBy = getSharedPreferences("MyTaskListPreferences", Context.MODE_PRIVATE).getString("sortfield","taskname");
+        String sortOrder = getSharedPreferences("MyTaskListPreferences", Context.MODE_PRIVATE).getString("sortorder","ASC");
+        TaskDataSource ds = new TaskDataSource(this);
+        ArrayList<Task> tasks;
+
+        try {
+            ds.open();
+            tasks = ds.getTasks(sortBy,sortOrder);
+            ds.close();
+            RecyclerView taskList = findViewById(R.id.rvContacts);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+            taskList.setLayoutManager(layoutManager);
+            TaskAdapter taskAdapter = new TaskAdapter(tasks, this);
+            taskAdapter.setOnItemClickListener(onItemClickListener);
+            taskList.setAdapter(taskAdapter);
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Error retrieving contacts", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     private void initListButton() {

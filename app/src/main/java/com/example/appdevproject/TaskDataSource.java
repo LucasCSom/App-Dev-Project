@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class TaskDataSource {
@@ -67,7 +68,7 @@ public class TaskDataSource {
         }
         return didDelete;
     }
-    public Task getSpecificContact(int taskId) {
+    public Task getSpecificTask(int taskId) {
         Task task = new Task();
         String query = "SELECT * FROM task WHERE _id = " + taskId;
         Cursor cursor = database.rawQuery(query,null);
@@ -83,4 +84,43 @@ public class TaskDataSource {
         return task;
     }
 
+    public int getLastTaskID() {
+        int lastId;
+        try {
+            String query = "Select MAX(_id) from task";
+            Cursor cursor = database.rawQuery(query,null);
+
+            cursor.moveToFirst();
+            lastId = cursor.getInt(0);
+            cursor.close();
+        }
+        catch (Exception e) {
+            lastId = -1;
+        }
+        return lastId;
+    }
+
+    public ArrayList<Task> getTasks(String sortField, String sortOrder) {
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        try {
+            String query = "SELECT * FROM task ORDER BY "+sortField+ " "+sortOrder;
+            Cursor cursor = database.rawQuery(query, null);
+
+            Task newTask;
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                newTask = new Task();
+                newTask.setTaskID(cursor.getInt(0));
+                newTask.setNotes(cursor.getString(1));
+                newTask.setPriority(cursor.getString(2));
+                tasks.add(newTask);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        catch (Exception e) {
+            tasks = new ArrayList<Task>();
+        }
+        return tasks;
+    }
 }

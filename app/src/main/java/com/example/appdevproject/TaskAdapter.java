@@ -15,30 +15,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class TaskAdapter extends RecyclerView.Adapter{
-    private ArrayList<Task> contactData;
+    private ArrayList<Task> taskData;
     private View.OnClickListener mOnItemClickListener;
     private boolean isDeleting;
     private Context parentContext;
 
-    public class ContactViewHolder extends RecyclerView.ViewHolder {
+    public class TaskViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textViewContact;
-        public TextView textPhone;
+        public TextView textViewTask;
+        public TextView textPriority;
         public Button deleteButton;
-        public ContactViewHolder(@NonNull View itemView) {
+        public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewContact = itemView.findViewById(R.id.textContactName);
-            textPhone = itemView.findViewById(R.id.textPhoneNumber);
-            deleteButton = itemView.findViewById(R.id.buttonDeleteContact);
+            textViewTask = itemView.findViewById(R.id.textTaskSubject);
+            textPriority = itemView.findViewById(R.id.textTaskPriority);
+            deleteButton = itemView.findViewById(R.id.buttonDeleteTask);
             itemView.setTag(this);
             itemView.setOnClickListener(mOnItemClickListener);
         }
 
         public TextView getContactTextView() {
-            return textViewContact;
+            return textViewTask;
         }
         public TextView getPhoneTextView() {
-            return textPhone;
+            return textPriority;
         }
         public Button getDeleteButton() {
             return deleteButton;
@@ -46,7 +46,7 @@ public class TaskAdapter extends RecyclerView.Adapter{
     }
 
     public TaskAdapter(ArrayList<Task> arrayList, Context context) {
-        contactData = arrayList;
+        taskData = arrayList;
         parentContext = context;
     }
 
@@ -58,14 +58,14 @@ public class TaskAdapter extends RecyclerView.Adapter{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-        return new ContactViewHolder(v);
+        return new TaskViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        ContactViewHolder cvh = (ContactViewHolder) holder;
-        cvh.getContactTextView().setText(contactData.get(position).getTaskName());
-        cvh.getPhoneTextView().setText(contactData.get(position).getNotes());
+        TaskViewHolder cvh = (TaskViewHolder) holder;
+        cvh.getContactTextView().setText(taskData.get(position).getTaskName());
+        cvh.getPhoneTextView().setText(taskData.get(position).getNotes());
         if (isDeleting) {
             cvh.getDeleteButton().setVisibility(View.VISIBLE);
             cvh.getDeleteButton().setOnClickListener(new View.OnClickListener() {
@@ -82,18 +82,18 @@ public class TaskAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return contactData.size();
+        return taskData.size();
     }
 
     private void deleteItem(int position) {
-        Task contact = contactData.get(position);
+        Task contact = taskData.get(position);
         TaskDataSource ds = new TaskDataSource(parentContext);
         try {
             ds.open();
             boolean didDelete = ds.deleteTask(contact.getTaskID());
             ds.close();
             if (didDelete) {
-                contactData.remove(position);
+                taskData.remove(position);
                 notifyDataSetChanged();
             }
             else {
@@ -107,6 +107,7 @@ public class TaskAdapter extends RecyclerView.Adapter{
     }
 
     public static void setDelete(boolean b) {
+        //weird error? might need rebuild by android studio or something
         isDeleting = b;
     }
 }
