@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class TaskAdapter extends RecyclerView.Adapter{
+    private static boolean isDeleting;
     private ArrayList<Task> taskData;
     private View.OnClickListener mOnItemClickListener;
-    private boolean isDeleting;
     private Context parentContext;
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
@@ -65,7 +65,7 @@ public class TaskAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         TaskViewHolder cvh = (TaskViewHolder) holder;
         cvh.getContactTextView().setText(taskData.get(position).getTaskName());
-        cvh.getPhoneTextView().setText(taskData.get(position).getNotes());
+        cvh.getPhoneTextView().setText(taskData.get(position).getPriority());
         if (isDeleting) {
             cvh.getDeleteButton().setVisibility(View.VISIBLE);
             cvh.getDeleteButton().setOnClickListener(new View.OnClickListener() {

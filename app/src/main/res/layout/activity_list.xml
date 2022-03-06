@@ -10,7 +10,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/toolbar_background"
+        android:background="@android:color/system_neutral2_600"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,44 +19,19 @@
             android:id="@+id/switchDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
             android:text="Delete:"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/buttonAddContact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:text="New"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textBatteryLevel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="100%"
-            app:layout_constraintBottom_toBottomOf="@+id/switchDelete"
-            app:layout_constraintEnd_toStartOf="@+id/buttonAddContact"
-            app:layout_constraintStart_toEndOf="@+id/switchDelete"
-            app:layout_constraintTop_toTopOf="@+id/switchDelete" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/LinearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/navbar_background"
+        android:background="@android:color/system_neutral1_600"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription=""
-            app:srcCompat="@drawable/notesicon" />
+            app:srcCompat="@android:drawable/ic_menu_add" />
 
         <ImageButton
             android:id="@+id/imageButtonMap"
@@ -76,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription=""
-            app:srcCompat="@drawable/contactlisticon" />
+            app:srcCompat="@android:drawable/ic_menu_agenda" />
 
         <ImageButton
             android:id="@+id/imageButtonSettings"
@@ -84,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription=""
-            app:srcCompat="@drawable/settingsicon" />
+            app:srcCompat="@android:drawable/ic_menu_manage" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         initPrioByClick();
         initSaveButton();
         initToggleButton();
+        setForEditing(false);
     }
 
     private void initListButton() {
@@ -161,11 +162,15 @@ public class MainActivity extends AppCompatActivity {
     private void setForEditing(boolean enabled) {
         EditText editSubject = findViewById(R.id.editSubject);
         EditText editNotes = findViewById(R.id.editNotes);
-        RadioGroup groupPriority = findViewById(R.id.radioGroupPriority);
+        RadioButton buttonHigh = findViewById(R.id.radioHigh);
+        RadioButton buttonMedium = findViewById(R.id.radioMedium);
+        RadioButton buttonLow = findViewById(R.id.radioLow);
 
         editSubject.setEnabled(enabled);
         editNotes.setEnabled(enabled);
-        groupPriority.setEnabled(enabled);
+        buttonHigh.setEnabled(enabled);
+        buttonMedium.setEnabled(enabled);
+        buttonLow.setEnabled(enabled);
 
         if (enabled) {
             editSubject.requestFocus();

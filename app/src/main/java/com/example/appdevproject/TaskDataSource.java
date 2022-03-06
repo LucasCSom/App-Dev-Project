@@ -111,8 +111,9 @@ public class TaskDataSource {
             while (!cursor.isAfterLast()) {
                 newTask = new Task();
                 newTask.setTaskID(cursor.getInt(0));
-                newTask.setNotes(cursor.getString(1));
-                newTask.setPriority(cursor.getString(2));
+                newTask.setTaskName(cursor.getString(1));
+                newTask.setNotes(cursor.getString(2));
+                newTask.setPriority(cursor.getString(3));
                 tasks.add(newTask);
                 cursor.moveToNext();
             }
