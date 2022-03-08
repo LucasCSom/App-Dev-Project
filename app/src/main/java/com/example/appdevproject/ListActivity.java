@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 public class ListActivity extends AppCompatActivity {
     TaskAdapter taskAdapter;
 
-    RecyclerView taskList;
     ArrayList<Task> tasks;
     private View.OnClickListener onItemClickListener = new View.OnClickListener() {
         @Override
@@ -98,7 +98,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void initDeleteSwitch() {
-        Switch s = findViewById(R.id.switchDelete);
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch s = findViewById(R.id.switchDelete);
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
