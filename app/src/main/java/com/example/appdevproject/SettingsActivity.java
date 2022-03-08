@@ -52,9 +52,9 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void initSettings() {
-        String sortBy = getSharedPreferences("TaskPreferences",
+        String sortBy = getSharedPreferences("MyTaskListPreferences",
                 Context.MODE_PRIVATE).getString("sortfield","date");
-        String sortOrder = getSharedPreferences("TaskPreferences",
+        String sortOrder = getSharedPreferences("MyTaskListPreferences",
                 Context.MODE_PRIVATE).getString("sortorder","ASC");
 
         RadioButton rbDate = findViewById(R.id.radioDate);
@@ -89,16 +89,16 @@ public class SettingsActivity extends AppCompatActivity {
                 RadioButton rbDate = findViewById(R.id.radioDate);
                 RadioButton rbPriority = findViewById(R.id.radioPriority);
                 if (rbDate.isChecked()) {
-                    getSharedPreferences("TaskPreferences",
+                    getSharedPreferences("MyTaskListPreferences",
                             Context.MODE_PRIVATE).edit().putString("sortfield", "date").apply();
                 }
                 else if (rbPriority.isChecked()) {
-                    getSharedPreferences("TaskPreferences",
+                    getSharedPreferences("MyTaskListPreferences",
                             Context.MODE_PRIVATE).edit().putString("sortfield", "priority").apply();
                 }
                 else {
-                    getSharedPreferences("TaskPreferences",
-                            Context.MODE_PRIVATE).edit().putString("sortfield", "birthday").apply();
+                    getSharedPreferences("MyTaskListPreferences",
+                            Context.MODE_PRIVATE).edit().putString("sortfield", "taskname").apply();
                 }
             }
         });
@@ -112,11 +112,11 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup arg0, int arg1) {
                 RadioButton rbAscending = findViewById(R.id.radioAscending);
                 if (rbAscending.isChecked()) {
-                    getSharedPreferences("TaskPreferences",
+                    getSharedPreferences("MyTaskListPreferences",
                             Context.MODE_PRIVATE).edit().putString("sortorder", "ASC").apply();
                 }
                 else {
-                    getSharedPreferences("TaskPreferences", Context.MODE_PRIVATE).edit().putString("sortorder", "DESC").apply();
+                    getSharedPreferences("MyTaskListPreferences", Context.MODE_PRIVATE).edit().putString("sortorder", "DESC").apply();
                 }
             }
         });

@@ -32,6 +32,7 @@ public class TaskDataSource {
             initialValues.put("taskname", c.getTaskName());
             initialValues.put("notes", c.getNotes());
             initialValues.put("priority", c.getPriority());
+            initialValues.put("date", String.valueOf(c.getDate().getTimeInMillis()));
 
             didSucceed = database.insert("task", null, initialValues) > 0;
         }

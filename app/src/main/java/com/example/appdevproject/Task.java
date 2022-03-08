@@ -1,14 +1,18 @@
 package com.example.appdevproject;
 
+import java.util.Calendar;
+
 public class Task {
 
     private int taskID;
     private String taskName;
     private String notes;
     private String priority;
+    private Calendar date;
 
     public Task() {
         taskID = -1;
+        date = Calendar.getInstance();
     }
     public String getTaskName() {
         return taskName;
@@ -42,4 +46,11 @@ public class Task {
         this.taskID = taskID;
     }
 
+    public Calendar getDate() {
+        return date;
+    }
+
+    public void setDate(Calendar date) {
+        this.date = date;
+    }
 }

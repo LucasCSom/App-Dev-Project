@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
+    RecyclerView taskList;
     TaskAdapter taskAdapter;
 
     ArrayList<Task> tasks;
