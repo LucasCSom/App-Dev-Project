@@ -70,7 +70,7 @@ public class TaskDataSource {
     }
     public Task getSpecificTask(int taskId) {
         Task task = new Task();
-        String query = "SELECT * FROM task WHERE _id = " + taskId;
+        String query = "SELECT * FROM task WHERE _id = "  + taskId;
         Cursor cursor = database.rawQuery(query,null);
 
         if (cursor.moveToFirst()) {
@@ -103,7 +103,8 @@ public class TaskDataSource {
     public ArrayList<Task> getTasks(String sortField, String sortOrder) {
         ArrayList<Task> tasks = new ArrayList<Task>();
         try {
-            String query = "SELECT * FROM task ORDER BY "+sortField+ " "+sortOrder;
+            //ORDER BY "+sortField+ " "+sortOrder
+            String query = "SELECT * FROM task ORDER BY " + sortField + " " + sortOrder;
             Cursor cursor = database.rawQuery(query, null);
 
             Task newTask;

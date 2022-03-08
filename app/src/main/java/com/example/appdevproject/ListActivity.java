@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
@@ -50,13 +49,12 @@ public class ListActivity extends AppCompatActivity {
         String sortBy = getSharedPreferences("MyTaskListPreferences", Context.MODE_PRIVATE).getString("sortfield","taskname");
         String sortOrder = getSharedPreferences("MyTaskListPreferences", Context.MODE_PRIVATE).getString("sortorder","ASC");
         TaskDataSource ds = new TaskDataSource(this);
-        ArrayList<Task> tasks;
 
         try {
             ds.open();
             tasks = ds.getTasks(sortBy,sortOrder);
             ds.close();
-            RecyclerView taskList = findViewById(R.id.rvContacts);
+            taskList = findViewById(R.id.rvTasks);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             taskList.setLayoutManager(layoutManager);
             TaskAdapter taskAdapter = new TaskAdapter(tasks, this);

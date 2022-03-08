@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            initTask(extras.getInt("taskid"));
+            initTask(extras.getInt("taskId"));
         } else {
             currentTask = new Task();
         }
@@ -206,13 +206,13 @@ public class MainActivity extends AppCompatActivity {
 
         editSubject.setText(currentTask.getTaskName());
         editNotes.setText(currentTask.getNotes());
-        if (currentTask.getPriority() == "High") {
+        if (currentTask.getPriority().equals("High")) {
             rbHigh.setChecked(true);
         }
-        else if (currentTask.getPriority() == "Medium") {
+        else if (currentTask.getPriority().equals("Medium")) {
             rbMedium.setChecked(true);
         }
-        else {
+        else if (currentTask.getPriority().equals("Low")){
             rbLow.setChecked(true);
         }
 
