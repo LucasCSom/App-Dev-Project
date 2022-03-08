@@ -20,7 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
         initSettingsButton();
         initPriorityButton();
         initSettings();
-        initSortByClick();
+       initSortByClick();
         initSortOrderClick();
     }
 
@@ -52,18 +52,18 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void initSettings() {
-        String sortBy = getSharedPreferences("MyContactListPreferences",
-                Context.MODE_PRIVATE).getString("sortfield","contactname");
-        String sortOrder = getSharedPreferences("MyContactListPreferences",
+        String sortBy = getSharedPreferences("TaskPreferences",
+                Context.MODE_PRIVATE).getString("sortfield","date");
+        String sortOrder = getSharedPreferences("TaskPreferences",
                 Context.MODE_PRIVATE).getString("sortorder","ASC");
 
         RadioButton rbDate = findViewById(R.id.radioDate);
         RadioButton rbPriority = findViewById(R.id.radioPriority);
         RadioButton rbSubject = findViewById(R.id.radioSubject);
-        if (sortBy.equalsIgnoreCase("contactname")) {
+        if (sortBy.equalsIgnoreCase("date")) {
             rbDate.setChecked(true);
         }
-        else if (sortBy.equalsIgnoreCase("city")) {
+        else if (sortBy.equalsIgnoreCase("priority")) {
             rbPriority.setChecked(true);
         }
         else {
@@ -89,15 +89,15 @@ public class SettingsActivity extends AppCompatActivity {
                 RadioButton rbDate = findViewById(R.id.radioDate);
                 RadioButton rbPriority = findViewById(R.id.radioPriority);
                 if (rbDate.isChecked()) {
-                    getSharedPreferences("MyContactListPreferences",
-                            Context.MODE_PRIVATE).edit().putString("sortfield", "contactname").apply();
+                    getSharedPreferences("TaskPreferences",
+                            Context.MODE_PRIVATE).edit().putString("sortfield", "date").apply();
                 }
                 else if (rbPriority.isChecked()) {
-                    getSharedPreferences("MyContactListPreferences",
-                            Context.MODE_PRIVATE).edit().putString("sortfield", "city").apply();
+                    getSharedPreferences("TaskPreferences",
+                            Context.MODE_PRIVATE).edit().putString("sortfield", "priority").apply();
                 }
                 else {
-                    getSharedPreferences("MyContactListPreferences",
+                    getSharedPreferences("TaskPreferences",
                             Context.MODE_PRIVATE).edit().putString("sortfield", "birthday").apply();
                 }
             }
@@ -112,11 +112,11 @@ public class SettingsActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup arg0, int arg1) {
                 RadioButton rbAscending = findViewById(R.id.radioAscending);
                 if (rbAscending.isChecked()) {
-                    getSharedPreferences("MyContactListPreferences",
+                    getSharedPreferences("TaskPreferences",
                             Context.MODE_PRIVATE).edit().putString("sortorder", "ASC").apply();
                 }
                 else {
-                    getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE).edit().putString("sortorder", "DESC").apply();
+                    getSharedPreferences("TaskPreferences", Context.MODE_PRIVATE).edit().putString("sortorder", "DESC").apply();
                 }
             }
         });
