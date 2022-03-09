@@ -150,10 +150,13 @@ public class MainActivity extends AppCompatActivity {
                 RadioButton rbMedium = findViewById(R.id.radioMedium);
                 if (rbHigh.isChecked()) {
                     currentTask.setPriority("High");
+                    currentTask.setPriority_weight(3);
                 } else if (rbMedium.isChecked()) {
                     currentTask.setPriority("Medium");
+                    currentTask.setPriority_weight(2);
                 } else {
                     currentTask.setPriority("Low");
+                    currentTask.setPriority_weight(1);
                 }
             }
         });

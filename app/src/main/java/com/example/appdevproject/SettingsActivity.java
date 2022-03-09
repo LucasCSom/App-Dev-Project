@@ -53,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void initSettings() {
         String sortBy = getSharedPreferences("MyTaskListPreferences",
-                Context.MODE_PRIVATE).getString("sortfield","date");
+                Context.MODE_PRIVATE).getString("sortfield","taskname");
         String sortOrder = getSharedPreferences("MyTaskListPreferences",
                 Context.MODE_PRIVATE).getString("sortorder","ASC");
 
@@ -63,7 +63,7 @@ public class SettingsActivity extends AppCompatActivity {
         if (sortBy.equalsIgnoreCase("date")) {
             rbDate.setChecked(true);
         }
-        else if (sortBy.equalsIgnoreCase("priority")) {
+        else if (sortBy.equalsIgnoreCase("priority_weight")) {
             rbPriority.setChecked(true);
         }
         else {
@@ -94,7 +94,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
                 else if (rbPriority.isChecked()) {
                     getSharedPreferences("MyTaskListPreferences",
-                            Context.MODE_PRIVATE).edit().putString("sortfield", "priority").apply();
+                            Context.MODE_PRIVATE).edit().putString("sortfield", "priority_weight").apply();
                 }
                 else {
                     getSharedPreferences("MyTaskListPreferences",

@@ -9,6 +9,7 @@ public class Task {
     private String notes;
     private String priority;
     private Calendar date;
+    private int priority_weight;
 
     public Task() {
         taskID = -1;
@@ -16,6 +17,14 @@ public class Task {
     }
     public String getTaskName() {
         return taskName;
+    }
+
+    public int getPriority_weight() {
+        return priority_weight;
+    }
+
+    public void setPriority_weight(int priority_weight) {
+        this.priority_weight = priority_weight;
     }
 
     public void setTaskName(String taskName) {

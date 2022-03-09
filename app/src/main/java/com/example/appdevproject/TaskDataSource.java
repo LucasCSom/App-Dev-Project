@@ -33,6 +33,7 @@ public class TaskDataSource {
             initialValues.put("notes", c.getNotes());
             initialValues.put("priority", c.getPriority());
             initialValues.put("date", String.valueOf(c.getDate().getTimeInMillis()));
+            initialValues.put("priority_weight", c.getPriority_weight());
 
             didSucceed = database.insert("task", null, initialValues) > 0;
         }
@@ -51,6 +52,7 @@ public class TaskDataSource {
             updateValues.put("taskname", c.getTaskName());
             updateValues.put("notes", c.getNotes());
             updateValues.put("priority", c.getPriority());
+            updateValues.put("priority", c.getPriority_weight());
 
             didSucceed = database.update("task", updateValues, "_id=" + rowId, null) > 0;
         }
@@ -79,6 +81,7 @@ public class TaskDataSource {
             task.setTaskName(cursor.getString(1));
             task.setNotes(cursor.getString(2));
             task.setPriority(cursor.getString(3));
+            task.setPriority_weight(cursor.getInt(5));
 
             cursor.close();
         }
@@ -116,6 +119,7 @@ public class TaskDataSource {
                 newTask.setTaskName(cursor.getString(1));
                 newTask.setNotes(cursor.getString(2));
                 newTask.setPriority(cursor.getString(3));
+                newTask.setPriority_weight(cursor.getInt(5));
                 tasks.add(newTask);
                 cursor.moveToNext();
             }
