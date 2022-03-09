@@ -52,7 +52,7 @@ public class TaskDataSource {
             updateValues.put("taskname", c.getTaskName());
             updateValues.put("notes", c.getNotes());
             updateValues.put("priority", c.getPriority());
-            updateValues.put("priority", c.getPriority_weight());
+            updateValues.put("priority_weight", c.getPriority_weight());
 
             didSucceed = database.update("task", updateValues, "_id=" + rowId, null) > 0;
         }
