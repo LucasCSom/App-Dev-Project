@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class TaskAdapter extends RecyclerView.Adapter{
-    private static boolean isDeleting;
+    private boolean isDeleting;
     private ArrayList<Task> taskData;
     private View.OnClickListener mOnItemClickListener;
     private Context parentContext;

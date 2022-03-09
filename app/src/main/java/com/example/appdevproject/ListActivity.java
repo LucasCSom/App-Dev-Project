@@ -55,12 +55,14 @@ public class ListActivity extends AppCompatActivity {
             ds.open();
             tasks = ds.getTasks(sortBy,sortOrder);
             ds.close();
-            taskList = findViewById(R.id.rvTasks);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-            taskList.setLayoutManager(layoutManager);
-            TaskAdapter taskAdapter = new TaskAdapter(tasks, this);
-            taskAdapter.setOnItemClickListener(onItemClickListener);
-            taskList.setAdapter(taskAdapter);
+            if (tasks.size() > 0) {
+                taskList = findViewById(R.id.rvTasks);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+                taskList.setLayoutManager(layoutManager);
+                taskAdapter = new TaskAdapter(tasks, this);
+                taskAdapter.setOnItemClickListener(onItemClickListener);
+                taskList.setAdapter(taskAdapter);
+            }
         }
         catch (Exception e) {
             Toast.makeText(this, "Error retrieving contacts", Toast.LENGTH_LONG).show();
@@ -97,7 +99,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void initDeleteSwitch() {
-        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch s = findViewById(R.id.switchDelete);
+        Switch s = findViewById(R.id.switchDelete);
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
