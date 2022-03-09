@@ -2,6 +2,7 @@ package com.example.appdevproject;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,10 +35,10 @@ public class TaskAdapter extends RecyclerView.Adapter{
             itemView.setOnClickListener(mOnItemClickListener);
         }
 
-        public TextView getContactTextView() {
+        public TextView getTaskTextView() {
             return textViewTask;
         }
-        public TextView getPhoneTextView() {
+        public TextView getPriorityTextView() {
             return textPriority;
         }
         public Button getDeleteButton() {
@@ -64,8 +65,17 @@ public class TaskAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         TaskViewHolder cvh = (TaskViewHolder) holder;
-        cvh.getContactTextView().setText(taskData.get(position).getTaskName());
-        cvh.getPhoneTextView().setText(taskData.get(position).getPriority());
+        cvh.getTaskTextView().setText(taskData.get(position).getTaskName());
+        cvh.getPriorityTextView().setText(taskData.get(position).getPriority());
+        if (taskData.get(position).getPriority().equals("High")) {
+            cvh.getTaskTextView().setTextColor(Color.RED);
+        }
+        else if (taskData.get(position).getPriority().equals("Medium")) {
+            cvh.getTaskTextView().setTextColor(Color.GREEN);
+        }
+        else {
+            cvh.getTaskTextView().setTextColor(Color.BLUE);
+        }
         if (isDeleting) {
             cvh.getDeleteButton().setVisibility(View.VISIBLE);
             cvh.getDeleteButton().setOnClickListener(new View.OnClickListener() {
